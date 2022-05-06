@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        let haveIt = [];
+
+        function generateUniqueRandom(maxNr) {
+            //Generate random number
+            let random = (Math.random() * maxNr).toFixed();
+
+            //Coerce to number by boxing
+            random = Number(random);
+
+            if (!haveIt.includes(random)) {
+                haveIt.push(random);
+                return random;
+            } else {
+                if (haveIt.length < maxNr) {
+                    //Recursively generate number
+                    return generateUniqueRandom(maxNr);
+                } else {
+                    console.log('No more numbers available.')
+                    return false;
+                }
+            }
+        }
+
+        let questions = [
+            'Animal?',
+            'Foreign city?',
+            'Celebrity?',
+            'Fruit?',
+            'Body part?',
+            'TV Show?',
+            'Song?',
+            'Movie?',
+            'Shop?',
+            'Country?',
+            'Plant or Flower?',
+            'Sports Star?',
+            'Car Make or Model?'
+        ],
+            ul = document.createElement('ul');
+
+        document.getElementById('questions').appendChild(ul);
+
+        count = 0
+        max = 10
+
+        while (count < max) {
+            pick = generateUniqueRandom(questions.length)
+            let li = document.createElement('li');
+            ul.appendChild(li);
+            li.innerHTML += questions[pick];
+            const index = questions.indexOf(pick);
+            count += 1
+        }
+
+        function getletter(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() *
+                    charactersLength));
+            }
+            return result;
+        }
+
+        header = document.createElement('header');
+        document.getElementById('letter').appendChild(header);
+        let h1 = document.createElement('h1');
+        header.appendChild(h1);
+        h1.innerHTML += "Your letter is " + getletter(1);
+        console.log(h1);
+
+    </script>
+</head>
+
+<body>
+    <div id="letter">
+
+    </div>
+    <div id="questions">
+
+    </div>
+
+</body>
+
+</html>
