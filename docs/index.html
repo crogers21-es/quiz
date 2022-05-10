@@ -64,7 +64,7 @@
         max = 10
 
         while (count < max) {
-            pick = generateUniqueRandom(questions.length)
+            pick = generateUniqueRandom(questions.length - 1)
             let li = document.createElement('li');
             ul.appendChild(li);
             li.innerHTML += questions[pick];
